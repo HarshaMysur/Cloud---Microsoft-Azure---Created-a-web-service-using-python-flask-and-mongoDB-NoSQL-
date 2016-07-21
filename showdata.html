@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 align="center">5792 taking 10:30 Class</h1>
+    <a href="{{ url_for('upload')}}">Home</a>
+    <h3>Welcome {{ username }}</h3><br />
+    <h4>Prog time = {{ progtime }}</h4>
+    <h4>Db time = {{ dbtime }}</h4>
+    <h4>Message : {{ message }}</h4>
+    <table>
+        {% set i=0 %}
+        {% for data in datas %}
+        {% if(i%5==0)%}
+
+        <tr>
+            <td>
+                <b>
+                    Subject:{{data['subject']}}<br>
+                    Priority:{{data['priority']}}<br />
+                    Upload time: {{data['datetime']}}
+                </b><br />
+                {% if(data['type'] == 'image') %}
+                    <img alt="sample" style="width:304px;height:228px;" src="data:image/png;base64,{{data['content']}}">'<br />
+                {%else%}
+                    {%autoescape false %}
+                    {{data['content']|replace("\r\n","<br>")}}<br />
+                    {% endautoescape %}
+                {%endif%}
+                <a href="{{ url_for('delete',id=data['_id'])}}">Delete</a><br />
+                {% if (data['type'] == 'image') %}
+                <form action="/update" method=post enctype=multipart/form-data>
+                    <select name="field">
+                        <option value="subject">Subject</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                    <input type="text" name="data"><br><br>
+                    <input type="hidden" name="id" value={{ data['_id'] }}>
+                    <input type="submit" name='submit' value="Update"></br></br>
+                </form>
+                {%else%}
+                <form action="/update" method=post enctype=multipart/form-data>
+                    <select name="field">
+                        <option value="subject">Subject</option>
+                        <option value="priority">Priority</option>
+                        <option value="content">Text Content</option>
+                    </select>
+                    <input type="text" name="data"><br><br>
+                    <input type="hidden" name="id" value={{ data['_id'] }}>
+                    <input type="submit" name='submit' value="Update"></br></br>
+                </form>
+                {%endif%}
+            </td>
+
+            {% elif(i%5==4) %}
+
+            <td>
+                <b>
+                    Subject:{{data['subject']}}<br>
+                    Priority:{{data['priority']}}<br />
+                    Upload time: {{data['datetime']}}
+                </b><br />
+                {% if(data['type'] == 'image') %}
+                    <img alt="sample" style="width:304px;height:228px;" src="data:image/png;base64,{{data['content']}}">'<br />
+                {%else%}
+                    {%autoescape false %}
+                    {{data['content']|replace("\r\n","<br>")}}<br />
+                    {% endautoescape %}
+                {%endif%}
+                <a href="{{ url_for('delete',id=data['_id'])}}">Delete</a><br />
+                {% if (data['type'] == 'image') %}
+                <form action="/update" method=post enctype=multipart/form-data>
+                    <select name="field">
+                        <option value="subject">Subject</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                    <input type="text" name="data"><br><br>
+                    <input type="hidden" name="id" value={{ data['_id'] }}>
+                    <input type="submit" name='submit' value="Update"></br></br>
+                </form>
+                {%else%}
+                <form action="/update" method=post enctype=multipart/form-data>
+                    <select name="field">
+                        <option value="subject">Subject</option>
+                        <option value="priority">Priority</option>
+                        <option value="content">Text Content</option>
+                    </select>
+                    <input type="text" name="data"><br><br>
+                    <input type="hidden" name="id" value={{ data['_id'] }}>
+                    <input type="submit" name='submit' value="Update"></br></br>
+                </form>
+                {%endif%}
+            </td>
+        </tr>
+        {% else %}
+
+        <td>
+            <b>Subject:{{data['subject']}}<br>
+            Priority:{{data['priority']}}<br />
+            Upload time: {{data['datetime']}}</b><br />
+            {% if(data['type'] == 'image') %}
+                <img alt="sample" style="width:304px;height:228px;" src="data:image/png;base64,{{data['content']}}">'<br />
+            {%else%}
+                {%autoescape false %}
+                {{data['content']|replace("\r\n","<br>")}}<br />
+                {% endautoescape %}
+            {%endif%}
+            <a href="{{ url_for('delete',id=data['_id'])}}">Delete</a><br />
+            {% if (data['type'] == 'image') %}
+            <form action="/update" method=post enctype=multipart/form-data>
+                <select name="field">
+                    <option value="subject">Subject</option>
+                    <option value="priority">Priority</option>
+                </select>
+                <input type="text" name="data"><br><br>
+                <input type="hidden" name="id" value={{ data['_id'] }}>
+                <input type="submit" name='submit' value="Update"></br></br>
+            </form>
+            {%else%}
+            <form action="/update" method=post enctype=multipart/form-data>
+                <select name="field">
+                    <option value="subject">Subject</option>
+                    <option value="priority">Priority</option>
+                    <option value="content">Text Content</option>
+                </select>
+                <input type="text" name="data"><br><br>
+                <input type="hidden" name="id" value={{ data['_id'] }}>
+                <input type="submit" name='submit' value="Update"></br></br>
+            </form>
+            {%endif%}
+        </td>
+        {% endif %}
+        {% set i = i + 1 %}
+        {% endfor %}
+    </table>
+</body>
+</html>

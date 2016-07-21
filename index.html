@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1 align="center">5792 taking 10:30 Class</h1>
+    <form action="/login" method=post enctype=multipart/form-data>
+        UserName: <input type="text" name="username"></br></br>
+        Password: <input type="password" name="password"></br></br>
+        <input type="submit" name='submit' value="Login"></br></br>
+        <input type="submit" name='submit' value="Cancel"></br></br>
+    </form>
+
+    <h3>New User</h3>
+
+    <form action="/newuser" method=post enctype=multipart/form-data>
+        UserName: <input type="text" name="username"></br></br>
+        Password: <input type="password" name="password"></br></br>
+        Picture size:<input type="text" name="psize"></br></br>
+        Note size:<input type="text" name="nsize"></br></br>
+        Limit size:<input type="text" name="lsize"></br></br>
+        <input type="submit" name='submit' value="Sign up"></br></br>
+        <input type="submit" name='submit' value="Cancel"></br></br>
+    </form>
+
+    <h3>{{ result }}{{ time }}</h3><br />
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 align="center">5792 taking 10:30 Class</h1>
+    <h3>Welcome {{ username }}</h3><br />
+    <h4>Message = {{ message }}</h4> 
+    <h4>Prog time = {{ progtime }}</h4>
+    <h4>Db time = {{ dbtime }}</h4>
+    <form action="/upload" method=post enctype=multipart/form-data>
+        Select file to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload"></br></br>
+        Subject:<input type="text" name="subject"><br><br>
+        Priority:<input type="number" name="priority" min="0" max="10"><br><br>
+        <input type="submit" name='submit' value="Upload"></br></br>
+    </form>
+    <form action="/showdata" method=post enctype=multipart/form-data>
+        <select name="field">
+            <option value="subject">Subject</option>
+            <option value="priority">Priority</option>
+            <option value="datetime">Upload time</option>
+        </select>
+        <select name="order">
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+        </select>
+        <input type="submit" name='submit' value="Show"></br></br>
+    </form>
+    <form action="/takeuserinput" method=post enctype=multipart/form-data>
+        Enter username:<input type="text" name="uname"></br></br>
+        UserInput1:<input type="text" name="input1">
+        UserInput2:<input type="text" name="input2">
+        <input type="submit" name='submit' value="User Input"></br></br>
+    </form>
+    <form action="/logout" method=post enctype=multipart/form-data>
+        <input type="submit" name='submit' value="Logout"></br></br>
+    </form>
+</body>
+</html>
